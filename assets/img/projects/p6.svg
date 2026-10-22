@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" width="360" height="330">
+<rect width="360" height="330" fill="#EDE7DE"/>
+<g><rect x="70" y="70" width="105" height="105" rx="20" fill="#16130F"/><rect x="195" y="70" width="105" height="105" rx="20" fill="#EDE7DE" opacity=".6"/><rect x="70" y="195" width="230" height="75" rx="20" fill="#E2552B"/></g>
+<text x="24" y="304" font-family="monospace" font-size="15" fill="#E2552B" opacity=".7">PROYEK 06 — placeholder</text>
+</svg>
