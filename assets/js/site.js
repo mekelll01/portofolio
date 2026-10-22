@@ -17,6 +17,11 @@
 (function () {
   'use strict';
 
+  /* Aktifkan gaya & animasi berbasis JS */
+  if (document.documentElement) {
+    document.documentElement.classList.add('js');
+  }
+
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ======================================================================
