@@ -1,32 +1,12 @@
-/* ==========================================================================
-   PORTFOLIO MICHAEL CHRISTIAN WITANTO — Skrip bersama semua halaman
-   Tema: Neobrutal Pop
-   --------------------------------------------------------------------------
-   Bagian:
-     A. Toast neobrutal + aksi cepat (salin surel, detail proyek, salin kode)
-     B. Bilah progres gulir + tombol ke atas
-     C. Angka berhitung saat muncul
-     D. Kursor pengikut (perangkat dengan penunjuk presisi)
-     E. Navigasi mobile
-     F. Salam mengikuti waktu + sorot menu/link navigasi aktif
-     G. Scroll reveal (IntersectionObserver)
-     H. Pencarian & filter proyek (hanya di index.html)
-     I. Validasi formulir kontak (hanya di kontak.html)
-   Setiap bagian aman dijalankan pada halaman yang tidak memilikinya.
-   ========================================================================== */
 (function () {
   'use strict';
 
-  /* Aktifkan gaya & animasi berbasis JS */
   if (document.documentElement) {
     document.documentElement.classList.add('js');
   }
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ======================================================================
-     A. TOAST NEOBRUTAL + AKSI CEPAT
-     ====================================================================== */
   var toastEl = document.getElementById('toast');
   var toastTimer = null;
 
@@ -42,7 +22,6 @@
     }, 3800);
   }
 
-  /* Salin teks apa pun ke papan klip (dipakai tombol salin surel & kode) */
   function salinTeks(teks, pesanSukses) {
     var sukses = function () { showToast(pesanSukses, 'mint'); };
     var gagal = function () { showToast('Gagal menyalin — salin manual ya.', 'coral'); };
@@ -66,7 +45,6 @@
     });
   }
 
-  /* Tautan detail proyek — isi detail menyusul, jadi beri umpan balik */
   var projectLinks = document.querySelectorAll('.project-link');
   for (var pl = 0; pl < projectLinks.length; pl++) {
     projectLinks[pl].addEventListener('click', function (e) {
@@ -78,9 +56,6 @@
     });
   }
 
-  /* ======================================================================
-     B. BILAH PROGRES GULIR + TOMBOL KE ATAS
-     ====================================================================== */
   var progressEl = document.getElementById('scroll-progress');
   var toTopEl = document.getElementById('to-top');
   var scrollTicking = false;
@@ -101,9 +76,6 @@
   }, { passive: true });
   paintScroll();
 
-  /* ======================================================================
-     C. ANGKA BERHITUNG SAAT MUNCUL
-     ====================================================================== */
   var statNums = document.querySelectorAll('[data-count]');
 
   function animateCount(el) {
@@ -141,9 +113,6 @@
     for (var sn2 = 0; sn2 < statNums.length; sn2++) { animateCount(statNums[sn2]); }
   }
 
-  /* ======================================================================
-     D. KURSOR PENGIKUT (hanya perangkat dengan penunjuk presisi)
-     ====================================================================== */
   var pointerHalus = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var dotEl = document.getElementById('cursor-dot');
   var ringEl = document.getElementById('cursor-ring');
@@ -172,9 +141,6 @@
     })();
   }
 
-  /* ======================================================================
-     E. NAVIGASI MOBILE (panel berbingkai)
-     ====================================================================== */
   var navToggle = document.getElementById('nav-toggle');
   var siteNav = document.getElementById('site-nav');
 
@@ -195,9 +161,6 @@
     });
   }
 
-  /* ======================================================================
-     F. SALAM WAKTU + SOROT MENU AKTIF
-     ====================================================================== */
   var greetingEl = document.getElementById('greeting');
   if (greetingEl) {
     var jam = new Date().getHours();
@@ -227,9 +190,6 @@
   window.addEventListener('scroll', updateSpy, { passive: true });
   updateSpy();
 
-  /* ======================================================================
-     G. SCROLL REVEAL
-     ====================================================================== */
   var revealItems = document.querySelectorAll('[data-reveal]');
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
@@ -245,7 +205,6 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
     for (var j = 0; j < revealItems.length; j++) { io.observe(revealItems[j]); }
 
-    /* Sapu cadangan: apa pun yang sudah lewat viewport tetap ditampilkan */
     var sapu = function () {
       var sisa = document.querySelectorAll('[data-reveal]:not(.reveal):not(.reveal-fallback)');
       for (var k = 0; k < sisa.length; k++) {
@@ -258,9 +217,6 @@
     window.addEventListener('load', sapu);
   }
 
-  /* ======================================================================
-     H. PENCARIAN & FILTER PROYEK (index.html)
-     ====================================================================== */
   var chips = document.querySelectorAll('.chip');
   var projectCards = document.querySelectorAll('.project-card');
   var searchInput = document.getElementById('project-search');
@@ -316,9 +272,6 @@
 
   if (projectCards.length) { applyFilter(); }
 
-  /* ======================================================================
-     I. VALIDASI FORMULIR KONTAK (kontak.html)
-     ====================================================================== */
   var form = document.getElementById('contact-form');
 
   if (form) {
